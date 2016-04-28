@@ -1,0 +1,22 @@
+{
+    "name": "dash-price-ticker"
+    , "version": "1.0.0"
+    , "description": "Embeddable dash price widget"
+    , "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "echo '=> linting' && jshint assets/scripts/*.js"
+    }
+    , "repository": {
+        "type": "git"
+        , "url": "git+https://github.com/seigler/Dash-html-ticker.git"
+    }
+    , "author": "Joshua Seigler"
+    , "license": "ISC"
+    , "bugs": {
+        "url": "https://github.com/seigler/Dash-html-ticker/issues"
+    }
+    , "homepage": "https://github.com/seigler/Dash-html-ticker#readme"
+    , "devDependencies": {
+        "jshint": "^2.9.2"
+    }
+}

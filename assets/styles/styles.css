@@ -1,0 +1,54 @@
+/* Micro reset so global styles don't interfere */
+.dash-ticker,
+.dash-ticker *,
+.dash-ticker *:before,
+.dash-ticker *:after {
+  box-sizing: inherit;
+  vertical-align: baseline;
+  font-weight: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.dash-ticker {
+  display: block;
+  max-width: 20em;
+  margin: 0.5em auto;
+  border-radius: 0.5em;
+  background-color: rgba(0,0,0,0.125);
+  box-sizing: border-box;
+  color: inherit;
+  padding: 0.5em;
+}
+
+.dash-ticker .dash-ticker--title {
+  text-align: center;
+  font-size: 1.5em;
+  padding-bottom: 0.125em;
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+  margin-bottom: 0.25em;
+}
+
+#dash-ticker--price-container {
+  font-size: 2em;
+  text-align: center;
+}
+
+#dash-ticker--price-container > input {
+  position: fixed;
+  right: -200px;
+}
+
+#dash-ticker--price-container > input + label {
+  display: none;
+  cursor: pointer;
+}
+
+#dash-ticker--price-container > input:checked + label {
+  display: block;
+}
