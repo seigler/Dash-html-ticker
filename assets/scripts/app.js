@@ -1,6 +1,9 @@
 (function () {
     "use strict";
+
+/*jshint ignore:start*/
     window.JSON || document.write('<scr' + 'ipt src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js"><\/scr' + 'ipt>');
+/*jshint ignore:end*/
 
     function fetchJSONFile(path, callback) {
         var httpRequest = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
@@ -25,7 +28,7 @@
             var nextCurrency = keys[(i < keys.length - 1 ? i + 1 : 0)];
             var currencyValue = data[keys[i]];
             var currencyString = (currencyValue.toPrecision(3).length > currencyValue.toFixed(2) ? currencyValue.toPrecision(3) : currencyValue.toFixed(2));
-            currencyListHTML += '<input type="radio" name="currency" id="dash-ticker-currencies-' + thisCurrency + '"' + (i == 0 ? ' checked' : '') + ' /><label for="dash-ticker-currencies-' + nextCurrency + '"><span class="dash-ticker--price">' + currencyString + '</span> <span class="dash-ticker--currency">' + thisCurrency.toUpperCase() + '</span></label>';
+            currencyListHTML += '<input type="radio" name="currency" id="dash-ticker-currencies-' + thisCurrency + '"' + (i === 0 ? ' checked' : '') + ' /><label for="dash-ticker-currencies-' + nextCurrency + '"><span class="dash-ticker--price">' + currencyString + '</span> <span class="dash-ticker--currency">' + thisCurrency.toUpperCase() + '</span></label>';
         }
         document.getElementById('dash-ticker--price-container').innerHTML = currencyListHTML;
     });
