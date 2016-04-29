@@ -1,1 +1,127 @@
-My Page
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Dash Price Widget | demo</title>
+    <meta name="description" content="Dash price widget">
+    <meta name="author" content="Joshua Seigler">
+
+</head>
+
+<body>
+
+
+    <style type="text/css">
+        /* Micro reset so global styles don't interfere */
+
+        .dash-ticker,
+        .dash-ticker *,
+        .dash-ticker *:before,
+        .dash-ticker *:after {
+            box-sizing: inherit;
+            vertical-align: baseline;
+            font-weight: inherit;
+            font-family: inherit;
+            font-style: inherit;
+            font-size: 100%;
+            border: 0 none;
+            outline: 0;
+            padding: 0;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .dash-ticker {
+            display: block;
+            max-width: 20em;
+            margin: 0.5em auto;
+            border-radius: 0.5em;
+            background-color: #1D76BC;
+            box-sizing: border-box;
+            color: white;
+            padding: 0.5em;
+            font-family: serif;
+        }
+
+        .dash-ticker .dash-ticker--title {
+            font-size: 2em;
+            float: left;
+            height: 1em;
+            width: 1em;
+            overflow: hidden;
+            text-indent: -999px;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0aD0iMjI2Ljc3N3B4IiBoZWlnaHQ9IjIyNi43NzdweCIgdmlld0JveD0iMCAwIDIyNi43NzcgMjI2Ljc3NyIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjI2Ljc3NyAyMjYuNzc3IgoJIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMTEzLjM4OCwwQzUwLjc2NiwwLDAsNTAuNzY2LDAsMTEzLjM4OGMwLDYyLjYyMyw1MC43NjYsMTEzLjM4OSwxMTMuMzg5LDExMy4zODkKCWM2Mi42MjMsMCwxMTMuMzg5LTUwLjc2NiwxMTMuMzg5LTExMy4zODlDMjI2Ljc3Nyw1MC43NjYsMTc2LjAxMSwwLDExMy4zODgsMHogTTU2LjU2MiwxMDQuODAyaDQ1LjI2NmwtNS4yMzgsMTcuMDI0SDUxLjMyNgoJTDU2LjU2MiwxMDQuODAyeiBNMTczLjgzLDk2Ljc3M2MtMS44MDEsNi41MDYtNy42NTYsMjYuMDIzLTEwLjA1OSwzMi45NDVjLTIuNCw2LjkyMi02LjgyOSwxMi43MzQtMTIuNTA2LDE2LjA1NwoJYy01LjY3NiwzLjMyMy03Ljc5Nyw0LjcxMi0xNS43MzEsNC43MTJINTQuMzAzbDUuNzIxLTE4LjU0Mmg3Ni4zOTVsMTEuNDE0LTM3LjEwOWgtNzUuNzlsNS43MjItMTguNTQxYzAsMCw4My42OTgsMCw4NC41NzcsMAoJYzMuODc1LDAsOC45OTYsMS43OTIsMTEuNDg4LDYuNjM5QzE3Ni4zMjEsODcuNzc1LDE3NS42MjksOTAuMjY3LDE3My44Myw5Ni43NzN6Ii8+Cjwvc3ZnPgo=");
+            background-size: 100% 100%;
+        }
+
+        #dash-ticker--price-container {
+            font-size: 2em;
+            text-align: center;
+        }
+
+        #dash-ticker--price-container > input {
+            position: fixed;
+            right: -200px;
+        }
+
+        #dash-ticker--price-container > input + label {
+            display: none;
+            cursor: pointer;
+        }
+
+        #dash-ticker--price-container > input:checked + label {
+            display: block;
+        }
+    </style>
+    <form class="dash-ticker">
+        <div class="dash-ticker--title">Dash Price</div>
+        <div id="dash-ticker--price-container" title="Click to change currency">
+            <input type="radio" name="currency" id="USD" checked />
+            <label>
+                <span class="dash-ticker--price">Loading...</span>
+                <span class="dash-ticker--currency"></span>
+            </label>
+        </div>
+    </form>
+    <script type="application/javascript">
+        (function () {
+            "use strict";
+
+            function fetchJSONFile(path, callback) {
+                var httpRequest = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+                httpRequest.onreadystatechange = function () {
+                    if (httpRequest.readyState === 4) {
+                        if (httpRequest.status === 200) {
+                            var data = JSON.parse(httpRequest.responseText);
+                            if (callback) {
+                                callback(data);
+                            }
+                        }
+                    }
+                };
+                httpRequest.open('GET', path);
+                httpRequest.send();
+            }
+
+            // this requests the file and executes a callback with the parsed result once it is available
+            fetchJSONFile('https://coinmarketcap-nexuist.rhcloud.com/api/dash/price', function (data) {
+                var keys = Object.keys(data)
+                    , currencyListHTML = "";
+                for (var i = 0; i < keys.length; i++) {
+                    var thisCurrency = keys[i];
+                    var nextCurrency = keys[(i < keys.length - 1 ? i + 1 : 0)];
+                    var currencyValue = data[keys[i]];
+                    var currencyString = (currencyValue.toPrecision(3).length > currencyValue.toFixed(2) ? currencyValue.toPrecision(3) : currencyValue.toFixed(2));
+                    currencyListHTML += '<input type="radio" name="currency" id="dash-ticker-currencies-' + thisCurrency + '"' + (i === 0 ? ' checked' : '') + ' /><label for="dash-ticker-currencies-' + nextCurrency + '"><span class="dash-ticker--price">' + currencyString + '</span> <span class="dash-ticker--currency">' + thisCurrency.toUpperCase() + '</span></label>';
+                }
+                document.getElementById('dash-ticker--price-container').innerHTML = currencyListHTML;
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
