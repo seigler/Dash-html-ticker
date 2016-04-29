@@ -1,0 +1,6 @@
+{
+  "name": "Dash Price Widget",
+  "tagline": "",
+  "body": "### Dash Price Widget\r\nThis is a small self-contained Dash price widget. It uses the coinmarketcap.com API at https://coinmarketcap-nexuist.rhcloud.com/ to retrieve the price of Dash and display it on a webpage.",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
