@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "Embeddable dash price widget",
   "scripts": {
-    "test": "npm run -s lint",
     "lint": "echo '=> linting' && jshint assets/scripts/*.js",
-    "inline": "echo '=> inlining' && inline-assets --cssmin --htmlmin assets/index.html dist/index.html",
-    "install": "npm run -s lint && npm run -s inline"
+    "inline": "echo '=> inlining' && inline-assets assets/index.html dist/index.html",
+    "test": "npm run -s lint && npm run -s inline"
   },
   "repository": {
     "type": "git",
@@ -20,6 +19,7 @@
   "homepage": "https://github.com/seigler/Dash-html-ticker#readme",
   "devDependencies": {
     "inline-assets": "^1.0.0",
-    "jshint": "^2.9.2"
+    "jshint": "^2.9.2",
+    "uglify-js": "^2.6.2"
   }
 }

@@ -1,10 +1,6 @@
 (function () {
     "use strict";
 
-/*jshint ignore:start*/
-    window.JSON || document.write('<scr' + 'ipt src="//cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js"><\/scr' + 'ipt>');
-/*jshint ignore:end*/
-
     function fetchJSONFile(path, callback) {
         var httpRequest = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
         httpRequest.onreadystatechange = function () {
