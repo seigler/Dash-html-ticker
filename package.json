@@ -1,5 +1,5 @@
 {
-  "name": "dash-price-ticker",
+  "name": "dash-price-widget",
   "version": "1.0.0",
   "description": "Embeddable dash price widget",
   "scripts": {

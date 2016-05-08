@@ -1,9 +1,9 @@
 /* Micro reset so global styles don't interfere */
 
-.dash-ticker,
-.dash-ticker *,
-.dash-ticker *:before,
-.dash-ticker *:after {
+[data-dash-price-widget],
+[data-dash-price-widget] *,
+[data-dash-price-widget] *:before,
+[data-dash-price-widget] *:after {
     box-sizing: inherit;
     vertical-align: baseline;
     font-weight: inherit;
@@ -17,9 +17,9 @@
     line-height: 1;
 }
 
-.dash-ticker {
+[data-dash-price-widget] {
     display: block;
-    max-width: 20em;
+    max-width: 18em;
     margin: 0.5em auto;
     border-radius: 0.5em;
     background-color: #1D76BC;
@@ -29,8 +29,8 @@
     font-family: serif;
 }
 
-.dash-ticker .dash-ticker--title {
-    font-size: 2em;
+[data-dash-price-widget] .dash-ticker--title {
+    font-size: 3em;
     float: left;
     height: 1em;
     width: 1em;
@@ -40,21 +40,20 @@
     background-size: 100% 100%;
 }
 
-#dash-ticker--price-container {
+[data-dash-price-widget]  .dash-ticker--wrapper {
+    margin-left: 3.5em;
+}
+
+[data-dash-price-widget] .dash-ticker--usd {
     font-size: 2em;
     text-align: center;
 }
 
-#dash-ticker--price-container > input {
-    position: fixed;
-    right: -200px;
+[data-dash-price-widget] .dash-ticker--usd-change {
+    text-align: right;
 }
 
-#dash-ticker--price-container > input + label {
-    display: none;
-    cursor: pointer;
-}
-
-#dash-ticker--price-container > input:checked + label {
-    display: block;
+[data-dash-price-widget] .dash-ticker--btc {
+    text-align: left;
+    margin-top: -1em;
 }
