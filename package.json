@@ -4,8 +4,9 @@
   "description": "Embeddable dash price widget",
   "scripts": {
     "lint": "echo '=> linting' && jshint assets/scripts/*.js",
-    "inline": "echo '=> inlining' && inline-assets assets/index.html dist/index.html",
-    "test": "npm run -s lint && npm run -s inline"
+    "compress": "echo '=> compressing JS' && uglifyjs assets/scripts/app.js --output dist/scripts/app.js",
+    "copy": "echo '=> copying HTML' && cp assets/index.html dist/index.html",
+    "test": "npm run -s lint && npm run -s copy && npm run -s compress"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,6 @@
   },
   "homepage": "https://github.com/seigler/Dash-html-ticker#readme",
   "devDependencies": {
-    "inline-assets": "^1.0.0",
     "jshint": "^2.9.2",
     "uglify-js": "^2.6.2"
   }
