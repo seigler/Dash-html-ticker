@@ -18,7 +18,7 @@
 }
 
 [data-dash-price-widget] {
-    display: block;
+    display: inline-block;
     max-width: 18em;
     margin: 0.5em auto;
     border-radius: 0.5em;
@@ -44,16 +44,15 @@
     margin-left: 3.5em;
 }
 
-[data-dash-price-widget] .dash-ticker--usd {
+[data-dash-price-widget] .dash-ticker--fiat {
     font-size: 2em;
-    text-align: center;
-}
-
-[data-dash-price-widget] .dash-ticker--usd-change {
     text-align: right;
 }
 
 [data-dash-price-widget] .dash-ticker--btc {
-    text-align: left;
-    margin-top: -1em;
+    float: left;
+}
+
+[data-dash-price-widget] .dash-ticker--change {
+    float: right;
 }
