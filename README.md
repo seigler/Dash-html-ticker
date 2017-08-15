@@ -5,7 +5,7 @@ This is a small self-contained Dash price widget. It uses the coinmarketcap.com 
 
 ## Demo
 
-You can see a demo of this project at http://seigler.github.io/Dash-html-ticker.
+You can see a demo of this project at http://seigler.github.io/Dash-price-widget.
 
 ## Using This Project
 
